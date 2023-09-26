@@ -32,8 +32,12 @@ day_before_yesterday = float(data["Time Series (Daily)"]["2023-09-22"]["4. close
 #TODO 3. - Find the positive difference between 1 and 2. e.g. 40 - 20 = -20, but the positive difference is 20. Hint: https://www.w3schools.com/python/ref_func_abs.asp
 
 print(format(abs(yesterday - day_before_yesterday), '.4f'))
+difference = float(format(abs(yesterday - day_before_yesterday), '.4f'))
 
 #TODO 4. - Work out the percentage difference in price between closing price yesterday and closing price the day before yesterday.
+
+percentage = difference/yesterday*100
+print(percentage)
 
 #TODO 5. - If TODO4 percentage is greater than 5 then print("Get News").
 
