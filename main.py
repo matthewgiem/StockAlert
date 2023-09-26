@@ -1,4 +1,4 @@
-from api_keys import stock
+from api_keys import stock, news
 import requests
 STOCK_NAME = "TSLA"
 COMPANY_NAME = "Tesla Inc"
@@ -11,23 +11,23 @@ NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
 
 #TODO 1. - Get yesterday's closing stock price. Hint: You can perform list comprehensions on Python dictionaries. e.g. [new_value for (key, value) in dictionary.items()]
 
-params = {
+paramsstock = {
     "function": "TIME_SERIES_DAILY",
     "symbol": STOCK_NAME,
     "apikey": stock
 }
 
-r = requests.get(STOCK_ENDPOINT, params)
+r = requests.get(STOCK_ENDPOINT, paramsstock)
 data = r.json()
 
-print(data["Time Series (Daily)"].keys())
-print(data["Time Series (Daily)"]["2023-09-25"]["4. close"])
-yesterday = float(data["Time Series (Daily)"]["2023-09-25"]["4. close"])
+data_list = [value for (key, value) in data["Time Series (Daily)"].items()]
+yesterday = float(data_list[0]["4. close"])
+print(yesterday)
 
 #TODO 2. - Get the day before yesterday's closing stock price
 
-print(data["Time Series (Daily)"]["2023-09-22"]["4. close"])
-day_before_yesterday = float(data["Time Series (Daily)"]["2023-09-22"]["4. close"])
+day_before_yesterday = float(data_list[1]["4. close"])
+print(day_before_yesterday)
 
 #TODO 3. - Find the positive difference between 1 and 2. e.g. 40 - 20 = -20, but the positive difference is 20. Hint: https://www.w3schools.com/python/ref_func_abs.asp
 
@@ -38,8 +38,22 @@ difference = float(format(abs(yesterday - day_before_yesterday), '.4f'))
 
 percentage = difference/yesterday*100
 print(percentage)
+percentage = 6
 
 #TODO 5. - If TODO4 percentage is greater than 5 then print("Get News").
+
+paramsnews = {
+    "q": COMPANY_NAME,
+    "from": "2023-09-26",
+    "sortBy": "popularity",
+    "apiKey":news
+}
+
+if percentage > 5:
+    print("Get News")
+    response = requests.get(NEWS_ENDPOINT, paramsnews)
+    data = response.json
+    print(data)
 
     ## STEP 2: https://newsapi.org/ 
     # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
