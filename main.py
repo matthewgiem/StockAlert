@@ -22,12 +22,16 @@ data = r.json()
 
 print(data["Time Series (Daily)"].keys())
 print(data["Time Series (Daily)"]["2023-09-25"]["4. close"])
+yesterday = float(data["Time Series (Daily)"]["2023-09-25"]["4. close"])
 
 #TODO 2. - Get the day before yesterday's closing stock price
 
 print(data["Time Series (Daily)"]["2023-09-22"]["4. close"])
+day_before_yesterday = float(data["Time Series (Daily)"]["2023-09-22"]["4. close"])
 
 #TODO 3. - Find the positive difference between 1 and 2. e.g. 40 - 20 = -20, but the positive difference is 20. Hint: https://www.w3schools.com/python/ref_func_abs.asp
+
+print(format(abs(yesterday - day_before_yesterday), '.4f'))
 
 #TODO 4. - Work out the percentage difference in price between closing price yesterday and closing price the day before yesterday.
 
