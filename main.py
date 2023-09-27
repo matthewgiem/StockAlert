@@ -38,24 +38,21 @@ difference = float(format(abs(yesterday_closing_price - day_before_yesterday_clo
 
 #TODO 4. - Work out the percentage difference in price between closing price yesterday and closing price the day before yesterday.
 
-percentage = difference/yesterday_closing_price*100
-print(percentage)
-percentage = 6
+percentage_change = difference/yesterday_closing_price*100
+print(percentage_change)
+percentage_change = 6
 
 #TODO 5. - If TODO4 percentage is greater than 5 then print("Get News").
 
 paramsnews = {
-    "q": COMPANY_NAME,
-    "from": "2023-09-26",
-    "sortBy": "popularity",
+    "qInTitle": COMPANY_NAME,
     "apiKey":news
 }
 
-if percentage > 5:
+if percentage_change > 5:
     print("Get News")
     response = requests.get(NEWS_ENDPOINT, paramsnews)
-    data = response.json
-    print(data)
+    data = response.json()
 
     ## STEP 2: https://newsapi.org/ 
     # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
