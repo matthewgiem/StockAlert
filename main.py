@@ -1,5 +1,6 @@
-from api_keys import stock, news
+from api_keys import stock, news, twilio_account_sid, TwilioAuthToken
 import requests
+from twilio.rest import Client
 
 STOCK_NAME = "TSLA"
 COMPANY_NAME = "Tesla Inc"
@@ -66,21 +67,41 @@ articles = data["articles"]
 
 #TODO 7. - Use Python slice operator to create a list that contains the first 3 articles. Hint: https://stackoverflow.com/questions/509211/understanding-slice-notation
 
-three_articles = articles[:3]
-print(three_articles)
-print(len(three_articles))
+if percentage_change > 5:
+    three_articles = articles[:3]
+    print(three_articles)
+    print(len(three_articles))
 
     ## STEP 3: Use twilio.com/docs/sms/quickstart/python
     #to send a separate message with each article's title and description to your phone number. 
 
 #TODO 8. - Create a new list of the first 3 article's headline and description using list comprehension.
 
-formatted_articles = [f"Headline: {article['title']}. \nBrief: {article['description']}" for article in three_articles]
-print(formatted_articles[0])
+if percentage_change > 5:
+    formatted_articles = [f"Headline: {article['title']}. \nBrief: {article['description']}" for article in three_articles]
+    print(formatted_articles[0])
 
 #TODO 9. - Send each article as a separate message via Twilio.
 
-
+# auth_token = TwilioAuthToken
+# account_sid = twilio_account_sid
+# client = Client(account_sid, auth_token)
+#
+# text_message = ""
+#
+# for x in formatted_articles:
+#     text_message += x
+#     text_message += "\n"
+# # print(text_message)
+#
+# message = client.messages.create(
+#     from_="+18449161624",
+#     body=text_message,
+#     to="+14155900939"
+# )
+#
+# print(message.sid)
+# print(message.status)
 
 
 #Optional TODO: Format the message like this: 
