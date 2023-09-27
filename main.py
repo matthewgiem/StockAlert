@@ -44,20 +44,24 @@ percentage_change = 6
 
 #TODO 5. - If TODO4 percentage is greater than 5 then print("Get News").
 
+if percentage_change > 5:
+    print("Get News")
+
+
+    ## STEP 2: https://newsapi.org/ 
+    # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
+
+#TODO 6. - Instead of printing ("Get News"), use the News API to get articles related to the COMPANY_NAME.
+
 paramsnews = {
     "qInTitle": COMPANY_NAME,
     "apiKey":news
 }
 
 if percentage_change > 5:
-    print("Get News")
     response = requests.get(NEWS_ENDPOINT, paramsnews)
     data = response.json()
-
-    ## STEP 2: https://newsapi.org/ 
-    # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
-
-#TODO 6. - Instead of printing ("Get News"), use the News API to get articles related to the COMPANY_NAME.
+print(data)
 
 #TODO 7. - Use Python slice operator to create a list that contains the first 3 articles. Hint: https://stackoverflow.com/questions/509211/understanding-slice-notation
 
