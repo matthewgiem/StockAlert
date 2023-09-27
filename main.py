@@ -21,22 +21,24 @@ r = requests.get(STOCK_ENDPOINT, paramsstock)
 data = r.json()
 
 data_list = [value for (key, value) in data["Time Series (Daily)"].items()]
-yesterday = float(data_list[0]["4. close"])
-print(yesterday)
+yesterday_data = data_list[0]
+yesterday_closing_price = float(yesterday_data["4. close"])
+print(yesterday_closing_price)
 
 #TODO 2. - Get the day before yesterday's closing stock price
 
-day_before_yesterday = float(data_list[1]["4. close"])
-print(day_before_yesterday)
+day_before_yesterday_data = data_list[1]
+day_before_yesterday_closing_price = float(day_before_yesterday_data["4. close"])
+print(day_before_yesterday_closing_price)
 
 #TODO 3. - Find the positive difference between 1 and 2. e.g. 40 - 20 = -20, but the positive difference is 20. Hint: https://www.w3schools.com/python/ref_func_abs.asp
 
-print(format(abs(yesterday - day_before_yesterday), '.4f'))
-difference = float(format(abs(yesterday - day_before_yesterday), '.4f'))
+print(format(abs(yesterday_closing_price - day_before_yesterday_closing_price), '.4f'))
+difference = float(format(abs(yesterday_closing_price - day_before_yesterday_closing_price), '.4f'))
 
 #TODO 4. - Work out the percentage difference in price between closing price yesterday and closing price the day before yesterday.
 
-percentage = difference/yesterday*100
+percentage = difference/yesterday_closing_price*100
 print(percentage)
 percentage = 6
 
