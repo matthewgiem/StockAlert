@@ -61,10 +61,12 @@ paramsnews = {
 if percentage_change > 5:
     response = requests.get(NEWS_ENDPOINT, paramsnews)
     data = response.json()
-print(data)
+articles = data["articles"]
 
 #TODO 7. - Use Python slice operator to create a list that contains the first 3 articles. Hint: https://stackoverflow.com/questions/509211/understanding-slice-notation
 
+print(articles[:3])
+print(len(articles[:3]))
 
     ## STEP 3: Use twilio.com/docs/sms/quickstart/python
     #to send a separate message with each article's title and description to your phone number. 
