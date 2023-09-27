@@ -1,5 +1,6 @@
 from api_keys import stock, news
 import requests
+
 STOCK_NAME = "TSLA"
 COMPANY_NAME = "Tesla Inc"
 
@@ -65,15 +66,19 @@ articles = data["articles"]
 
 #TODO 7. - Use Python slice operator to create a list that contains the first 3 articles. Hint: https://stackoverflow.com/questions/509211/understanding-slice-notation
 
-print(articles[:3])
-print(len(articles[:3]))
+three_articles = articles[:3]
+print(three_articles)
+print(len(three_articles))
 
     ## STEP 3: Use twilio.com/docs/sms/quickstart/python
     #to send a separate message with each article's title and description to your phone number. 
 
 #TODO 8. - Create a new list of the first 3 article's headline and description using list comprehension.
 
-#TODO 9. - Send each article as a separate message via Twilio. 
+# print(articles[0]["title","description"])
+
+#TODO 9. - Send each article as a separate message via Twilio.
+
 
 
 
